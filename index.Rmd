@@ -200,7 +200,7 @@ cr_covid_19
 bins <- c(0, 500, 1000, 2000, 3000, 4000,  Inf)
 paleta_azul <- colorBin("YlOrRd", domain = activos_cantones_reciente$activos, bins = bins)
 
-cr_covid-19<- leaflet(activos_cantones_reciente) %>% 
+leaflet(st_activos_cantones_reciente) %>% 
   fitBounds(lng1 = -86, lng2 = -82, lat1 = 8, lat2 = 11) %>%
   addTiles() %>% 
   addProviderTiles(providers$OpenStreetMap, group = "OpenStreetMap") %>%
@@ -212,9 +212,9 @@ cr_covid-19<- leaflet(activos_cantones_reciente) %>%
   addPolygons(fillColor = ~paleta_azul(activos), stroke=T, fillOpacity = 1,
               color="black", weight=0.2, opacity= 0.5,
               group = "Cantones",
-              popup = paste("Provincia: ",activos_cantones_reciente$provincia, "<br>",
-                        "Cantón: ", activos_cantones_reciente$canton, "<br>",
-                        "activos: ", activos_cantones_reciente$activos
+              popup = paste("Provincia: ",st_activos_cantones_reciente$provincia, "<br>",
+                        "Cantón: ", st_activos_cantones_reciente$canton, "<br>",
+                        "activos: ", st_activos_cantones_reciente$activos
                       )
   ) %>%
   addLegend("bottomright", pal = paleta_azul, values = ~activos,
